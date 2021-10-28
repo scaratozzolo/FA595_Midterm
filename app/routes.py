@@ -3,6 +3,13 @@ from app import app
 # This line import your functions from the services folder
 from app.services import *
 
+
+@app.route("/")
+def index():
+
+    return "Hello World"
+
+
 @app.route("/nlp", methods=["POST"])
 def nlp():
     # Whatever you send to the server will then print in the console
