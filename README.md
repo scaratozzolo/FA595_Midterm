@@ -11,7 +11,7 @@ The services available are as follows:
 
 
 
-#### /nlp/services/chat_bot
+### /nlp/services/chat_bot
 
 The chat_bot endpoint allows a user to send a string of text to the server and recieve back a response as if you we're speaking to someone. Through the use of the chat_id in the payload, the history of the chat can be maintained and improves the response from the server.
 
@@ -24,7 +24,7 @@ Response from the server will look like:
 {"response": "chat bot response", "chat_id": integer}
 
 
-#### /nlp/services/next_word
+### /nlp/services/next_word
 
 The next_word endpoint allows a user to send a string of text to the server and recieve back a list of possible next words that would come after the submitted text. 
 
