@@ -37,7 +37,6 @@ def available_services():
 def chat_bot_service():
 
     data = request.json
-    print(data)
     chat_id = None
 
     if "text" not in data:
