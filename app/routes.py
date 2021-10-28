@@ -20,7 +20,7 @@ def nlp():
     return jsonify(request.json)
 
 @app.route("/nlp/services", methods=["GET", "POST"])
-def available_services():
+def services():
     
     services = {"services": {
                                 "chat_bot": "/nlp/services/chat_bot",
@@ -29,6 +29,7 @@ def available_services():
         }
 
     __services = {
+                "all": all_service,
                 "chat_bot": chat_bot_service,
                 "next_word": next_word_service,
         }
@@ -54,9 +55,13 @@ def available_services():
         return jsonify(response)
 
 @app.route("/nlp/services/all", methods=["POST"])
-def all_service():
+def all_service(data=None):
 
-    data = request.json
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error":"no data provided"})
+
     services = {}
     services["chat_bot"] = chat_bot_service(data).get_json()
     services["next_word"] = next_word_service(data).get_json()

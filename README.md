@@ -2,13 +2,17 @@
 
 ## Available Services
 
-Available services can get found by performing a GET request on /nlp/services. A POST request on this endpoint will produce different results. More info below.
+### GET /nlp/services
 
-The services available are as follows:
+This endpoint will return a json object conatining information regarding the available services.
 
- - /nlp/services/all
- - /nlp/services/chat_bot
- - /nlp/services/next_word
+The service available are as follows:
+
+ - "all" : /nlp/services/all
+ - "chat_bot" : /nlp/services/chat_bot
+ - "next_word" : /nlp/services/next_word
+
+ The string in quotes can be used when defining a subset of services while perfoming a POST request on /nlp/services
 
 ### POST /nlp/services 
 
