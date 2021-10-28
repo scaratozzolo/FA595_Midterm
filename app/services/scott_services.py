@@ -28,7 +28,15 @@ def next_word(text, k=5):
 chat_history = {0:"Placeholder"}
 
 def chat_bot(text, chat_id=None):
+
     global chat_history
+
+    if chat_id is not None:
+        try:
+            chat_history[chat_id]
+        except:
+            print(chat_history.keys())
+            return {"error": f"chat_id does not exist. given: {chat_id}"}
 
     new_user_input_ids = DialoGPTtokenizer.encode(text + DialoGPTtokenizer.eos_token, return_tensors='pt')
 
@@ -46,6 +54,6 @@ def chat_bot(text, chat_id=None):
 if __name__ == '__main__':
 
     print(chat_bot("Elon Musk is my favorite"))
-    print(chat_bot("I don't like tacos"))
     print(chat_bot("Why not?", 1))
+    print(chat_bot("Do you not like cars?", 1))
 

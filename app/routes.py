@@ -43,7 +43,7 @@ def chat_bot_service():
         return jsonify({"error":"'text' missing from payload"})
     elif "chat_id" in data:
         try:
-            chat_id = int(data['chat_data'])
+            chat_id = int(data['chat_id'])
         except:
             return jsonify({"error":f"invalid 'chat_id' in payload. given: {data['chat_data']}, type: {type(data['chat_id'])}"})
 
