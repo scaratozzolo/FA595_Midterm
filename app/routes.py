@@ -30,12 +30,6 @@ def nlp():
 
 @app.route("/nlp/services", methods=["GET", "POST"])
 def services():
-    
-    services = {"services": {
-                                "chat_bot": "/nlp/services/chat_bot",
-                                "next_word": "/nlp/services/next_word",
-            }
-        }
 
     __services = {
                 "all": all_service,
@@ -44,7 +38,7 @@ def services():
         }
 
     if request.method == "GET":
-        return jsonify(services)
+        return jsonify({"services": {k:url_for(v.__name__) for k,v in __services.items()}})
 
     elif request.method == "POST":
 
