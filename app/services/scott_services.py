@@ -30,8 +30,8 @@ chat_history = {0:"Placeholder"}
 def chat_bot(text, chat_id=None):
     global chat_history
 
-    DialoGPTtokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-large")
-    DialoGPTmodel = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-large")
+    DialoGPTtokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
+    DialoGPTmodel = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-small")
 
     new_user_input_ids = DialoGPTtokenizer.encode(text + DialoGPTtokenizer.eos_token, return_tensors='pt')
 
