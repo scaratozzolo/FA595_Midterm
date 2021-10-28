@@ -23,9 +23,6 @@ def next_word(text, k=5):
     probs = predictions[0, -1, :]
     top_next = [GPTtokenizer.decode(i.item()).strip() for i in probs.topk(k)[1]]
 
-    del GPTtokenizer
-    del GPTmodel
-
     return top_next
 
 chat_history = {0:"Placeholder"}
@@ -43,9 +40,6 @@ def chat_bot(text, chat_id=None):
     chat_history[chat_id] = DialoGPTmodel.generate(bot_input_ids, max_length=1000, pad_token_id=DialoGPTtokenizer.eos_token_id)
 
     output = DialoGPTtokenizer.decode(chat_history[chat_id][:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)
-
-    del DialoGPTtokenizer
-    del DialoGPTmodel
 
     return {"response": output, "chat_id": chat_id}
 
