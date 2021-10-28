@@ -1,7 +1,6 @@
-from flask import jsonify, request
-from torch.cuda.memory import empty_cache
+from flask import jsonify, request, url_for
 from app import app
-from app import services
+import requests
 # This line import your functions from the services folder
 from app.services import *
 
@@ -33,10 +32,25 @@ def available_services():
     # Whatever you send to the server will be returned back from the api
     return jsonify(services)
 
-@app.route("/nlp/services/chat_bot", methods=["POST"])
-def chat_bot_service():
+@app.route("/nlp/services/all", methods=["GET"])
+def all_service():
 
     data = request.json
+    services = {}
+    services["chat_bot"] = chat_bot_service(data).get_json()
+    services["next_word"] = next_word_service(data).get_json()
+
+
+    return jsonify(services)
+
+@app.route("/nlp/services/chat_bot", methods=["POST"])
+def chat_bot_service(data=None):
+
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error":"no data provided"})
+
     chat_id = None
 
     if "text" not in data:
@@ -51,9 +65,13 @@ def chat_bot_service():
 
 
 @app.route("/nlp/services/next_word", methods=["POST"])
-def next_word_service():
+def next_word_service(data=None):
     
-    data = request.json
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error":"no data provided"})
+
     k = 5
     if "text" not in data:
         return jsonify({"error":"'text' missing from payload"})
