@@ -1,12 +1,15 @@
 import torch
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, AutoModelForCausalLM, AutoTokenizer
 
+GPTtokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+GPTmodel = GPT2LMHeadModel.from_pretrained("gpt2")
+
+DialoGPTtokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
+DialoGPTmodel = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-small")
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def next_word(text, k=5):
-
-    GPTtokenizer = GPT2Tokenizer.from_pretrained("gpt2")
-    GPTmodel = GPT2LMHeadModel.from_pretrained("gpt2")
 
     indexed_tokens = GPTtokenizer.encode(text)
     tokens_tensor = torch.tensor([indexed_tokens])
@@ -29,9 +32,6 @@ chat_history = {0:"Placeholder"}
 
 def chat_bot(text, chat_id=None):
     global chat_history
-
-    DialoGPTtokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
-    DialoGPTmodel = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-small")
 
     new_user_input_ids = DialoGPTtokenizer.encode(text + DialoGPTtokenizer.eos_token, return_tensors='pt')
 
