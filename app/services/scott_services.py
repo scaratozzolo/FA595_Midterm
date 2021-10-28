@@ -35,7 +35,6 @@ def chat_bot(text, chat_id=None):
         try:
             chat_history[chat_id]
         except:
-            print(chat_history.keys())
             return {"error": f"chat_id does not exist. given: {chat_id}"}
 
     new_user_input_ids = DialoGPTtokenizer.encode(text + DialoGPTtokenizer.eos_token, return_tensors='pt')
