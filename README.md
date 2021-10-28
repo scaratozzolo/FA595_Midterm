@@ -1,12 +1,26 @@
 # FA595_Midterm
 
+## Deployment
+
+Perform the following steps in a terminal or command prompt:
+
+Clone this repo: ```git clone https://github.com/scaratozzolo/FA595_Midterm.git```
+
+Then change directory into the repo: ```cd FA595_Midterm```
+
+Install all the required packages: ```pip3 install -r requirements\requirements.txt```
+
+Run the flask app: ```python3 run.py```
+
+This will run the app on port 5000. This port must be open to incoming traffic. If the port is accepting requests, then you can use use go to http://your-public-ip:5000. If you're running the app locally, you just need to go to http://localhost:5000.
+
 ## Available Services
 
 ### GET /nlp/services
 
 This endpoint will return a json object conatining information regarding the available services.
 
-The service available are as follows:
+The services available are as follows:
 
  - "all" : /nlp/services/all
  - "chat_bot" : /nlp/services/chat_bot

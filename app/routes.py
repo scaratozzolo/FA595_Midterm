@@ -8,7 +8,16 @@ from app.services import *
 @app.route("/")
 def index():
 
-    return "Hello World"
+    resp = """FA595 Midterm Fall 2021
+    <br /><br />
+    Natalia Azarian<br />
+    Scott Caratozzolo<br />
+    Audrey Nguyen<br />
+    Agathe Sadeghi
+    <br /><br />
+    More information and documentation: <a href='https://github.com/scaratozzolo/FA595_Midterm'>https://github.com/scaratozzolo/FA595_Midterm</a>"""
+
+    return resp
 
 
 @app.route("/nlp", methods=["POST"])
