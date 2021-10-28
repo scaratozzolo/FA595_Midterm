@@ -19,18 +19,39 @@ def nlp():
     # Whatever you send to the server will be returned back from the api
     return jsonify(request.json)
 
-@app.route("/nlp/services", methods=["GET"])
+@app.route("/nlp/services", methods=["GET", "POST"])
 def available_services():
     
     services = {"services": {
-                            "all": "/nlp/services/all",
-                            "chat_bot": "/nlp/services/chat_bot",
-                            "next_word": "/nlp/services/next_word",
+                                "chat_bot": "/nlp/services/chat_bot",
+                                "next_word": "/nlp/services/next_word",
+            }
         }
-    }
 
-    # Whatever you send to the server will be returned back from the api
-    return jsonify(services)
+    __services = {
+                "chat_bot": chat_bot_service,
+                "next_word": next_word_service,
+        }
+
+    if request.method == "GET":
+        return jsonify(services)
+
+    elif request.method == "POST":
+
+        data = request.json
+
+        if "services" not in data:
+            return jsonify({"error": "no services defined in request"})
+
+        response = {}
+
+        for service in data['services']:
+
+            if service in __services:
+
+                response[service] = __services[service](data).get_json()
+
+        return jsonify(response)
 
 @app.route("/nlp/services/all", methods=["POST"])
 def all_service():
