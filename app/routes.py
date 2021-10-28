@@ -45,8 +45,22 @@ def chat_bot_service():
         try:
             chat_id = int(data['chat_id'])
         except:
-            return jsonify({"error":f"invalid 'chat_id' in payload. given: {data['chat_data']}, type: {type(data['chat_id'])}"})
+            return jsonify({"error":f"invalid 'chat_id' in payload. given: {data['chat_id']}, type: {type(data['chat_id'])}"})
 
     return jsonify(chat_bot(text=data['text'], chat_id=chat_id))
-    
 
+
+@app.route("/nlp/services/next_word", methods=["POST"])
+def next_word_service():
+    
+    data = request.json
+    k = 5
+    if "text" not in data:
+        return jsonify({"error":"'text' missing from payload"})
+    elif "num_words" in data:
+        try:
+            k = int(data['num_words'])
+        except:
+            return jsonify({"error":f"invalid 'num_words' in payload. given: {data['num_words']}, type: {type(data['num_words'])}"})
+
+    return jsonify(next_word(text=data['text'], k=k))

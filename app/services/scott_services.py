@@ -23,7 +23,7 @@ def next_word(text, k=5):
     probs = predictions[0, -1, :]
     top_next = [GPTtokenizer.decode(i.item()).strip() for i in probs.topk(k)[1]]
 
-    return top_next
+    return {"predicted_words": top_next}
 
 chat_history = {0:"Placeholder"}
 
