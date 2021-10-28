@@ -32,7 +32,7 @@ def available_services():
     # Whatever you send to the server will be returned back from the api
     return jsonify(services)
 
-@app.route("/nlp/services/all", methods=["GET"])
+@app.route("/nlp/services/all", methods=["POST"])
 def all_service():
 
     data = request.json
