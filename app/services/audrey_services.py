@@ -1,5 +1,5 @@
 # create function to extract and classify named entities
-
+import pandas
 import spacy
 NER = spacy.load("en_core_web_sm")
 
@@ -24,7 +24,6 @@ def entity_ext(in_string):
 
 from nltk import sent_tokenize
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-import pandas
 
 def text_sentiment(in_string):
     scores = []
