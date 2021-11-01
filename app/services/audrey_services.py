@@ -22,6 +22,7 @@ def entity_ext(in_string):
 # =====================================================================================
 # create a function to split text string into sentences to score sentiment
 
+import nltk
 from nltk import sent_tokenize
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
