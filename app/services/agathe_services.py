@@ -1,9 +1,17 @@
 import nltk
+import ssl
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('punkt')
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
+
 
 # get frequency
 def word_freq(text):
@@ -11,7 +19,7 @@ def word_freq(text):
     words = tokenizer.tokenize(text)
     freq = nltk.FreqDist(words)
     out = [(i, j) for i, j in freq.items()]
-    return out
+    return {"response" : out}
 
 
 # lemmatize
@@ -23,4 +31,4 @@ def wordnet_pos(word):
 def word_lem(text):
     lemmatizer = WordNetLemmatizer()
     out = [lemmatizer.lemmatize(w, wordnet_pos(w)) for w in nltk.word_tokenize(text)]
-    return out
+    return {"response" : out}
