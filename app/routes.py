@@ -134,15 +134,4 @@ def word_lemmatization_servie(data=None):
         if not data:
             return jsonify({"error":"no data provided"})
 
-    return jsonify(word_freq(text=['text']))
-
-
-
-
-
-
-
-
-
-
-
+    return jsonify(word_lem(text=['text']))
