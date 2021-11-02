@@ -83,3 +83,29 @@ This endpoint can only be accessed through a POST request. The payload must be i
 Response from the server will look like:
 
 {'predicted_words': []}
+
+
+### POST /nlp/services/word_frerq
+
+The word_freq endpoint allows a user to send a string of text to the server and recieve back a list containing the frequency of each word in the text.
+
+This endpoint can only be accessed through a POST request. The payload must be in the form of one of: 
+
+{"text": "your text here"}
+
+Response from the server will look like:
+
+{'response': [("word", frequency)]}
+
+
+### POST /nlp/services/word_lem
+
+The word_lem endpoint allows a user to send a string of text to the server and recieve back a list containing the lematized form of each word in the text.
+
+This endpoint can only be accessed through a POST request. The payload must be in the form of one of: 
+
+{"text": "your text here"}
+
+Response from the server will look like:
+
+{'response': []}
