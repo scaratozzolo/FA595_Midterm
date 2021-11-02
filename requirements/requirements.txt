@@ -3,3 +3,6 @@ nltk
 spacy
 torch
 transformers
+ssl
+nltk.stem
+nltk.corpus
