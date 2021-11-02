@@ -17,7 +17,7 @@ def entity_ext(in_string):
     df = df.drop_duplicates()
     df = df.merge(count, how='left', left_on="Entity", left_index=False, right_index=True)
     df.columns = ["Entity", "Label", "Label Desc", "Count"]
-    print(df)
+    return df.to_json(orient = 'split')
 
 # =====================================================================================
 # create a function to split text string into sentences to score sentiment
@@ -42,4 +42,4 @@ def text_sentiment(in_string):
     else:
         sentiment = 'Neutral'
     out_string = ("Overall text's sentiment is " + str(sentiment) + ", with an average compound score of " + str(avg_score))
-    print(df, out_string, sep='\n')
+    return [df.to_json(orient = 'split'), out_string]
