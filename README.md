@@ -94,6 +94,7 @@ The entity_ext endpoint allows a user to send a string of text to the server and
 This endpoint can only be accessed through a POST request. The payload must be in English, and in the following form: {"text": "your text here"}
 
 Response from the server will look like:
+
 {"columns":["Entity","Label","Label Desc","Count"],"index":[0,1,2,3],"data":[["","",",],["","","",],["","","",],["","","",]]}
 
 ### POST /nlp/services/text_sentiment
@@ -103,6 +104,7 @@ The text_sentiment endpoint allows a user to send a string of text to the server
 This endpoint can only be accessed through a POST request. The payload must be in English, and in the following form: {"text": "your text here"}
 
 Response from the server will look like:
+
 ['{"columns":["Sentence","Score"],"index":[0,1,2],"data":[["", ], ["", ], ["", ]]}', "Overall text's sentiment is "", with an average compound score of "]
 
 
