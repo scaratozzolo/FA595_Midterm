@@ -35,6 +35,8 @@ def services():
                 "all": all_service,
                 "chat_bot": chat_bot_service,
                 "next_word": next_word_service,
+                "entity_ext": entity_ext_service,
+                "text_sentiment": text_sentiment_service,
         }
 
     if request.method == "GET":
@@ -68,7 +70,8 @@ def all_service(data=None):
     services = {}
     services["chat_bot"] = chat_bot_service(data).get_json()
     services["next_word"] = next_word_service(data).get_json()
-
+    services["entity_ext"] = entity_ext_service(data).get_json()
+    services["text_sentiment"] = text_sentiment_service(data).get_json()
 
     return jsonify(services)
 
@@ -111,3 +114,29 @@ def next_word_service(data=None):
             return jsonify({"error":f"invalid 'num_words' in payload. given: {data['num_words']}, type: {type(data['num_words'])}"})
 
     return jsonify(next_word(text=data['text'], k=k))
+
+
+@app.route("/nlp/services/entity_ext", methods=["POST"])
+def entity_ext_service(data=None):
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error": "no data provided"})
+
+    if "text" not in data:
+        return jsonify({"error": "'text' missing from payload"})
+
+    return jsonify(entity_ext(text=data['text']))
+
+
+@app.route("/nlp/services/text_sentiment", methods=["POST"])
+def text_sentiment_service(data=None):
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error": "no data provided"})
+
+    if "text" not in data:
+        return jsonify({"error": "'text' missing from payload"})
+
+    return jsonify(text_sentiment(text=data['text']))
