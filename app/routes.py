@@ -35,6 +35,8 @@ def services():
                 "all": all_service,
                 "chat_bot": chat_bot_service,
                 "next_word": next_word_service,
+                "word_freq": word_frequency_serive,
+                "word_lem": word_lemmatization_servie
         }
 
     if request.method == "GET":
@@ -111,3 +113,36 @@ def next_word_service(data=None):
             return jsonify({"error":f"invalid 'num_words' in payload. given: {data['num_words']}, type: {type(data['num_words'])}"})
 
     return jsonify(next_word(text=data['text'], k=k))
+
+
+@app.route("/nlp/services/word_freq", methods=["POST"])
+def word_frequency_service(data=None):
+    
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error":"no data provided"})
+
+    return jsonify(word_freq(text=['text']))
+
+
+@app.route("/nlp/services/word_lem", methods=["POST"])
+def word_lemmatization_servie(data=None):
+    
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error":"no data provided"})
+
+    return jsonify(word_freq(text=['text']))
+
+
+
+
+
+
+
+
+
+
+
