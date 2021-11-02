@@ -125,7 +125,7 @@ def word_frequency_service(data=None):
         if not data:
             return jsonify({"error":"no data provided"})
 
-    return jsonify(word_freq(text=['text']))
+    return jsonify(word_freq(text=data['text']))
 
 
 @app.route("/nlp/services/word_lem", methods=["POST"])
@@ -136,4 +136,4 @@ def word_lemmatization_servie(data=None):
         if not data:
             return jsonify({"error":"no data provided"})
 
-    return jsonify(word_lem(text=['text']))
+    return jsonify(word_lem(text=data['text']))
