@@ -70,6 +70,8 @@ def all_service(data=None):
     services = {}
     services["chat_bot"] = chat_bot_service(data).get_json()
     services["next_word"] = next_word_service(data).get_json()
+    services["word_freq"] = word_frequency_serive(data).get_json()
+    services["word_lem"] = word_lemmatization_servie(data).get_json()
 
 
     return jsonify(services)
