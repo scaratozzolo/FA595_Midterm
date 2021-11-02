@@ -91,33 +91,18 @@ Response from the server will look like:
 
 The entity_ext endpoint allows a user to send a string of text to the server and receive back a list of entities, entity labels, the label description, and count of each entity's occurrence for the submitted text. 
 
-This endpoint can only be accessed through a POST request. The payload must be in English, and in the following form: ("your text here")
+This endpoint can only be accessed through a POST request. The payload must be in English, and in the following form: {"text": "your text here"}
 
 Response from the server will look like:
-                             Entity  ... Count
-0                           SEATTLE  ...     1
-1                               two  ...     1
-2                    Sunday evening  ...     1
-3                           Seattle  ...     1
-4  Chinatown-International District  ...     1
-5              South Jackson Street  ...     1
-6                       35-year-old  ...     1
-7                       40-year-old  ...     1
-8         Harborview Medical Center  ...     1
-
+{"columns":["Entity","Label","Label Desc","Count"],"index":[0,1,2,3],"data":[["","",",],["","","",],["","","",],["","","",]]}
 
 ### POST /nlp/services/text_sentiment
 
 The text_sentiment endpoint allows a user to send a string of text to the server and receive back a list of sentences and their compound scores, along with a text string of analyzed sentiment and overall score for the submitted text. 
 
-This endpoint can only be accessed through a POST request. The payload must be in English, and in the following form: ("your text here")
+This endpoint can only be accessed through a POST request. The payload must be in English, and in the following form: {"text": "your text here"}
 
 Response from the server will look like:
-                                            Sentence  Score
-0  SEATTLE — An investigation is underway after t...  0.000
-1  Officers were called to 12th Ave. S. and South...  0.000
-2  Police said a 35-year-old man and 40-year-old ...  0.000
-3  Both were taken to Harborview Medical Center i...  0.296
-Overall text's sentiment is Neutral, with an average compound score of 0.074
+['{"columns":["Sentence","Score"],"index":[0,1,2],"data":[["", ], ["", ], ["", ]]}', "Overall text's sentiment is "", with an average compound score of "]
 
 
