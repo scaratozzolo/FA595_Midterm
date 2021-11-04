@@ -87,6 +87,32 @@ Response from the server will look like:
 {'predicted_words': []}
 
 
+### POST /nlp/services/word_frerq
+
+The word_freq endpoint allows a user to send a string of text to the server and recieve back a list containing the frequency of each word in the text.
+
+This endpoint can only be accessed through a POST request. The payload must be in the form of one of: 
+
+{"text": "your text here"}
+
+Response from the server will look like:
+
+{'response': [("word", frequency)]}
+
+
+### POST /nlp/services/word_lem
+
+The word_lem endpoint allows a user to send a string of text to the server and recieve back a list containing the lematized form of each word in the text.
+
+This endpoint can only be accessed through a POST request. The payload must be in the form of one of: 
+
+{"text": "your text here"}
+
+Response from the server will look like:
+
+{'response': []}
+
+
 ### POST /nlp/services/entity_ext
 
 The entity_ext endpoint allows a user to send a string of text to the server and receive back a list of entities, entity labels, the label description, and count of each entity's occurrence for the submitted text. 
@@ -97,6 +123,7 @@ Response from the server will look like:
 
 {"columns":["Entity","Label","Label Desc","Count"],"index":[0,1,2,3],"data":[["","",",],["","","",],["","","",],["","","",]]}
 
+
 ### POST /nlp/services/text_sentiment
 
 The text_sentiment endpoint allows a user to send a string of text to the server and receive back a list of sentences and their compound scores, along with a text string of analyzed sentiment and overall score for the submitted text. 
@@ -106,5 +133,3 @@ This endpoint can only be accessed through a POST request. The payload must be i
 Response from the server will look like:
 
 ['{"columns":["Sentence","Score"],"index":[0,1,2],"data":[["", ], ["", ], ["", ]]}', "Overall text's sentiment is "", with an average compound score of "]
-
-

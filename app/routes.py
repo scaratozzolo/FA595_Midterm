@@ -35,6 +35,8 @@ def services():
                 "all": all_service,
                 "chat_bot": chat_bot_service,
                 "next_word": next_word_service,
+                "word_freq": word_frequency_serive,
+                "word_lem": word_lemmatization_servie
                 "entity_ext": entity_ext_service,
                 "text_sentiment": text_sentiment_service,
         }
@@ -70,6 +72,8 @@ def all_service(data=None):
     services = {}
     services["chat_bot"] = chat_bot_service(data).get_json()
     services["next_word"] = next_word_service(data).get_json()
+    services["word_freq"] = word_frequency_serive(data).get_json()
+    services["word_lem"] = word_lemmatization_servie(data).get_json()
     services["entity_ext"] = entity_ext_service(data).get_json()
     services["text_sentiment"] = text_sentiment_service(data).get_json()
 
@@ -115,6 +119,27 @@ def next_word_service(data=None):
 
     return jsonify(next_word(text=data['text'], k=k))
 
+
+@app.route("/nlp/services/word_freq", methods=["POST"])
+def word_frequency_service(data=None):
+    
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error":"no data provided"})
+
+    return jsonify(word_freq(text=data['text']))
+
+
+@app.route("/nlp/services/word_lem", methods=["POST"])
+def word_lemmatization_servie(data=None):
+    
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error":"no data provided"})
+
+    return jsonify(word_lem(text=data['text']))
 
 @app.route("/nlp/services/entity_ext", methods=["POST"])
 def entity_ext_service(data=None):
