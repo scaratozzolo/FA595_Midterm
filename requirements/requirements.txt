@@ -6,3 +6,5 @@ transformers
 ssl
 nltk.stem
 nltk.corpus
+vaderSentiment
+pandas

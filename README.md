@@ -18,30 +18,32 @@ This will run the app on port 5000. This port must be open to incoming traffic. 
 
 ### GET /nlp/services
 
-This endpoint will return a json object conatining information regarding the available services.
+This endpoint will return a json object containing information regarding the available services.
 
 The services available are as follows:
 
  - "all" : /nlp/services/all
  - "chat_bot" : /nlp/services/chat_bot
  - "next_word" : /nlp/services/next_word
+ - "entity_ext" : /nlp/services/entity_ext
+ - "text_sentiment" : /nlp/services/text_sentiment
 
- The string in quotes can be used when defining a subset of services while perfoming a POST request on /nlp/services
+ The string in quotes can be used when defining a subset of services while performing a POST request on /nlp/services
 
 ### POST /nlp/services 
 
-This endpoint allows a user to send a string of text to the server and recieve a response containing the result of calling the services specified in the payload.
+This endpoint allows a user to send a string of text to the server and receive a response containing the result of calling the services specified in the payload.
 
-The payload must contain a text of string, the subset of services as a list, as well as all of the other parameters that should be passed to each endpoint.
+The payload must contain a text string, the subset of services as a list, as well as all of the other parameters that should be passed to each endpoint.
 For example:
 
 {"text": "your text here", "services":["chat_bot", "next_word"], "chat_id": integer, "num_words": integer}
 
 ### POST /nlp/services/all
 
-The all endpoint allowes a user to send a string of text to the server and recieve back a response containing the result of calling all the other endpoints.
+The all endpoint allows a user to send a string of text to the server and receive back a response containing the result of calling all the other endpoints.
 
-This endpoint can only be accessed through a POST request. The payload must contain a text of string as well as all of the other parameters that should be passed to each endpoint. For example:
+This endpoint can only be accessed through a POST request. The payload must contain a text string as well as all of the other parameters that should be passed to each endpoint. For example:
 
 {"text": "your text here", "chat_id": integer, "num_words": integer}
 
@@ -61,7 +63,7 @@ Each key in the response is equal to the values returned from /nlp/services.
 
 ### POST /nlp/services/chat_bot
 
-The chat_bot endpoint allows a user to send a string of text to the server and recieve back a response as if you we're speaking to someone. Through the use of the chat_id in the payload, the history of the chat can be maintained and improves the response from the server.
+The chat_bot endpoint allows a user to send a string of text to the server and receive back a response as if you were speaking to someone. Through the use of the chat_id in the payload, the history of the chat can be maintained and improves the response from the server.
 
 This endpoint can only be accessed through a POST request. The payload must be in the form of one of two options: 
 
@@ -74,7 +76,7 @@ Response from the server will look like:
 
 ### POST /nlp/services/next_word
 
-The next_word endpoint allows a user to send a string of text to the server and recieve back a list of possible next words that would come after the submitted text. 
+The next_word endpoint allows a user to send a string of text to the server and receive back a list of possible next words that would come after the submitted text. 
 
 This endpoint can only be accessed through a POST request. The payload must be in the form of one of two options: 
 
@@ -109,3 +111,25 @@ This endpoint can only be accessed through a POST request. The payload must be i
 Response from the server will look like:
 
 {'response': []}
+
+
+### POST /nlp/services/entity_ext
+
+The entity_ext endpoint allows a user to send a string of text to the server and receive back a list of entities, entity labels, the label description, and count of each entity's occurrence for the submitted text. 
+
+This endpoint can only be accessed through a POST request. The payload must be in English, and in the following form: {"text": "your text here"}
+
+Response from the server will look like:
+
+{"columns":["Entity","Label","Label Desc","Count"],"index":[0,1,2,3],"data":[["","",",],["","","",],["","","",],["","","",]]}
+
+
+### POST /nlp/services/text_sentiment
+
+The text_sentiment endpoint allows a user to send a string of text to the server and receive back a list of sentences and their compound scores, along with a text string of analyzed sentiment and overall score for the submitted text. 
+
+This endpoint can only be accessed through a POST request. The payload must be in English, and in the following form: {"text": "your text here"}
+
+Response from the server will look like:
+
+['{"columns":["Sentence","Score"],"index":[0,1,2],"data":[["", ], ["", ], ["", ]]}', "Overall text's sentiment is "", with an average compound score of "]
