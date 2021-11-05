@@ -3,3 +3,4 @@
 from .scott_services import next_word, chat_bot
 from .agathe_services import word_freq, word_lem
 from .audrey_services import entity_ext, text_sentiment
+from .natalia_services import spellcheck, translate
