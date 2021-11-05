@@ -165,3 +165,27 @@ def text_sentiment_service(data=None):
         return jsonify({"error": "'text' missing from payload"})
 
     return jsonify(text_sentiment(text=data['text']))
+
+@app.route("/nlp/services/spellcheck", methods=["POST"])
+def spellcheck_service(data=None):
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error": "no data provided"})
+
+    if "text" not in data:
+        return jsonify({"error": "'text' missing from payload"})
+
+    return jsonify(spellcheck(text=data['text']))
+
+@app.route("/nlp/services/translate", methods=["POST"])
+def translate_service(data=None):
+    if not data:
+        data = request.json
+        if not data:
+            return jsonify({"error": "no data provided"})
+
+    if "text" not in data:
+        return jsonify({"error": "'text' missing from payload"})
+
+    return jsonify(translate(text=data['text']))
