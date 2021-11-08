@@ -27,6 +27,8 @@ The services available are as follows:
  - "next_word" : /nlp/services/next_word
  - "entity_ext" : /nlp/services/entity_ext
  - "text_sentiment" : /nlp/services/text_sentiment
+ - "word_freq" : /nlp/services/word_freq
+ - "word_lem" : /nlp/services/word_lem
 
  The string in quotes can be used when defining a subset of services while performing a POST request on /nlp/services
 
