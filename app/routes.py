@@ -39,6 +39,8 @@ def services():
                 "word_lem": word_lemmatization_service,
                 "entity_ext": entity_ext_service,
                 "text_sentiment": text_sentiment_service,
+                "spellcheck": spellcheck_service,
+                "translate": translate_service
         }
 
     if request.method == "GET":
@@ -76,6 +78,8 @@ def all_service(data=None):
     services["word_lem"] = word_lemmatization_service(data).get_json()
     services["entity_ext"] = entity_ext_service(data).get_json()
     services["text_sentiment"] = text_sentiment_service(data).get_json()
+    services["spellcheck"] = spellcheck_service(data).get_json()
+    services["translate"] = translate_service(data).get_json()
 
     return jsonify(services)
 
