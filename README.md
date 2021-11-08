@@ -87,7 +87,7 @@ Response from the server will look like:
 {'predicted_words': []}
 
 
-### POST /nlp/services/word_frerq
+### POST /nlp/services/word_freq
 
 The word_freq endpoint allows a user to send a string of text to the server and recieve back a list containing the frequency of each word in the text.
 
