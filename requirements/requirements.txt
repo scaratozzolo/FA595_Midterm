@@ -6,3 +6,4 @@ transformers
 vaderSentiment
 pandas
 contextualSpellCheck
+textblob
