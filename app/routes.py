@@ -152,9 +152,6 @@ def entity_ext_service(data=None):
         if not data:
             return jsonify({"error": "no data provided"})
 
-    if "text" not in data:
-        return jsonify({"error": "'text' missing from payload"})
-
     return jsonify(entity_ext(text=data['text']))
 
 
@@ -164,9 +161,6 @@ def text_sentiment_service(data=None):
         data = request.json
         if not data:
             return jsonify({"error": "no data provided"})
-
-    if "text" not in data:
-        return jsonify({"error": "'text' missing from payload"})
 
     return jsonify(text_sentiment(text=data['text']))
 
