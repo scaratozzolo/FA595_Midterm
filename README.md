@@ -25,10 +25,12 @@ The services available are as follows:
  - "all" : /nlp/services/all
  - "chat_bot" : /nlp/services/chat_bot
  - "next_word" : /nlp/services/next_word
- - "entity_ext" : /nlp/services/entity_ext
- - "text_sentiment" : /nlp/services/text_sentiment
  - "word_freq" : /nlp/services/word_freq
  - "word_lem" : /nlp/services/word_lem
+ - "entity_ext" : /nlp/services/entity_ext
+ - "text_sentiment" : /nlp/services/text_sentiment
+ - "spellcheck" : /nlp/services/spellcheck
+ - "translate" : /nlp/services/translate 
 
  The string in quotes can be used when defining a subset of services while performing a POST request on /nlp/services
 
@@ -135,3 +137,26 @@ This endpoint can only be accessed through a POST request. The payload must be i
 Response from the server will look like:
 
 ['{"columns":["Sentence","Score"],"index":[0,1,2],"data":[["", ], ["", ], ["", ]]}', "Overall text's sentiment is "", with an average compound score of "]
+
+
+### POST /nlp/services/spellcheck
+
+The spellcheck endpoint allows a user to send a string of text to the server and receive back the correct spelling and grammar of that string. 
+
+This endpoint can only be accessed through a POST request. The payload must be in English, and in the following form: {"text": "your text here"}
+
+Response from the server will look like:
+
+{'response': []}
+
+
+### POST /nlp/services/translate
+
+The translate endpoint allows a user to send a string of text with the target language specified to the server and receive back the translation of that string. 
+
+This endpoint can only be accessed through a POST request. The payload can be in any language (regardless of spelling/grammar), and in the following form: {"text": "your text here", "language": language code}. Note: language codes can be found at https://cloud.google.com/translate/docs/basic/translating-text#language-params.
+
+Response from the server will look like:
+
+{'response': []}
+
