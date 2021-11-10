@@ -7,3 +7,4 @@ vaderSentiment
 pandas
 contextualSpellCheck
 textblob
+gunicorn

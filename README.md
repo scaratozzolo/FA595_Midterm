@@ -154,7 +154,7 @@ Response from the server will look like:
 
 The translate endpoint allows a user to send a string of text with the target language specified to the server and receive back the translation of that string. 
 
-This endpoint can only be accessed through a POST request. The payload can be in any language (regardless of spelling/grammar), and in the following form: {"text": "your text here", "language": language code}. Note: language codes can be found at https://cloud.google.com/translate/docs/languages.
+This endpoint can only be accessed through a POST request. The payload can be in any language (regardless of spelling/grammar), and in the following form: {"text": "your text here", "language_code": "language code"}. Note: language codes can be found at https://cloud.google.com/translate/docs/languages.
 
 Response from the server will look like:
 
