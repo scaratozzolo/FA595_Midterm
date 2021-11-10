@@ -26,6 +26,6 @@ def translate(text, language):
 
     return {"translated": translated}
 
-#if __name__ == '__main__':
-#    print(spellcheck(text))
-#    print(translate(text, language))
+# if __name__ == '__main__':
+#     print(spellcheck(text))
+#     print(translate(text, language))
