@@ -1,9 +1,7 @@
 import spacy
 import contextualSpellCheck # pip install contextualSpellCheck
 from textblob import TextBlob
-
-# text = "The brown fox laeped over the hole."
-# language = 'fr'   
+  
 
 def spellcheck(text):
     
@@ -22,10 +20,12 @@ def translate(text, language):
     
     # Translate text to another language (automatically spellchecks)
     '''Add reference to language codes in README'''
-    translated = blob.translate(to=language)
+    translated = str(blob.translate(to=language))
 
     return {"translated": translated}
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
 #     print(spellcheck(text))
-#     print(translate(text, language))
+    text = "The brown fox laeped over the hole."
+    language = 'fr' 
+    print(translate(text, language))
