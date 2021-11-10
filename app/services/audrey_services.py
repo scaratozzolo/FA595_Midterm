@@ -3,11 +3,11 @@ import pandas
 import spacy
 NER = spacy.load("en_core_web_sm")
 
-def entity_ext(in_string):
+def entity_ext(text):
     Entities = []
     Labels = []
     Labels_Desc = []
-    txt = NER(in_string)
+    txt = NER(text)
     for i in txt.ents:
         Entities += [i.text]
         Labels += [i.label_]
@@ -26,9 +26,9 @@ import nltk
 from nltk import sent_tokenize
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-def text_sentiment(in_string):
+def text_sentiment(text):
     scores = []
-    sentences = nltk.sent_tokenize(in_string)
+    sentences = nltk.sent_tokenize(text)
     analyzer = SentimentIntensityAnalyzer()
     for i in sentences:
         score_i = analyzer.polarity_scores(i)["compound"]

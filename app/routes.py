@@ -35,10 +35,12 @@ def services():
                 "all": all_service,
                 "chat_bot": chat_bot_service,
                 "next_word": next_word_service,
-                "word_freq": word_frequency_serive,
-                "word_lem": word_lemmatization_servie
+                "word_freq": word_frequency_service,
+                "word_lem": word_lemmatization_service,
                 "entity_ext": entity_ext_service,
                 "text_sentiment": text_sentiment_service,
+                "spellcheck": spellcheck_service,
+                "translate": translate_service
         }
 
     if request.method == "GET":
@@ -72,10 +74,12 @@ def all_service(data=None):
     services = {}
     services["chat_bot"] = chat_bot_service(data).get_json()
     services["next_word"] = next_word_service(data).get_json()
-    services["word_freq"] = word_frequency_serive(data).get_json()
-    services["word_lem"] = word_lemmatization_servie(data).get_json()
+    services["word_freq"] = word_frequency_service(data).get_json()
+    services["word_lem"] = word_lemmatization_service(data).get_json()
     services["entity_ext"] = entity_ext_service(data).get_json()
     services["text_sentiment"] = text_sentiment_service(data).get_json()
+    services["spellcheck"] = spellcheck_service(data).get_json()
+    services["translate"] = translate_service(data).get_json()
 
     return jsonify(services)
 
@@ -132,7 +136,7 @@ def word_frequency_service(data=None):
 
 
 @app.route("/nlp/services/word_lem", methods=["POST"])
-def word_lemmatization_servie(data=None):
+def word_lemmatization_service(data=None):
     
     if not data:
         data = request.json
@@ -148,9 +152,6 @@ def entity_ext_service(data=None):
         if not data:
             return jsonify({"error": "no data provided"})
 
-    if "text" not in data:
-        return jsonify({"error": "'text' missing from payload"})
-
     return jsonify(entity_ext(text=data['text']))
 
 
@@ -160,9 +161,6 @@ def text_sentiment_service(data=None):
         data = request.json
         if not data:
             return jsonify({"error": "no data provided"})
-
-    if "text" not in data:
-        return jsonify({"error": "'text' missing from payload"})
 
     return jsonify(text_sentiment(text=data['text']))
 

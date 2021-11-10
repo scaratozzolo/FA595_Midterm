@@ -25,6 +25,8 @@ The services available are as follows:
  - "all" : /nlp/services/all
  - "chat_bot" : /nlp/services/chat_bot
  - "next_word" : /nlp/services/next_word
+ - "word_freq" : /nlp/services/word_freq
+ - "word_lem" : /nlp/services/word_lem
  - "entity_ext" : /nlp/services/entity_ext
  - "text_sentiment" : /nlp/services/text_sentiment
  - "spellcheck" : /nlp/services/spellcheck
@@ -89,7 +91,7 @@ Response from the server will look like:
 {'predicted_words': []}
 
 
-### POST /nlp/services/word_frerq
+### POST /nlp/services/word_freq
 
 The word_freq endpoint allows a user to send a string of text to the server and recieve back a list containing the frequency of each word in the text.
 
