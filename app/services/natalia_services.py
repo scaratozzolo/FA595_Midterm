@@ -20,8 +20,7 @@ def translate(text, language):
     
     # Translate text to another language (automatically spellchecks)
     '''Add reference to language codes in README'''
-    translated = blob.translate(to=language)
-    print(translated)
+    translated = str(blob.translate(to=language))
 
     return {"translated": translated}
 
