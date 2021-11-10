@@ -186,4 +186,4 @@ def translate_service(data=None):
     if "text" not in data:
         return jsonify({"error": "'text' missing from payload"})
 
-    return jsonify(translate(text=data['text']))
+    return jsonify(translate(text=data['text'], language=data['language code']))
