@@ -132,6 +132,9 @@ def word_frequency_service(data=None):
         if not data:
             return jsonify({"error":"no data provided"})
 
+    if "text" not in data:
+        return jsonify({"error": "'text' missing from payload"})
+
     return jsonify(word_freq(text=data['text']))
 
 
@@ -143,14 +146,21 @@ def word_lemmatization_service(data=None):
         if not data:
             return jsonify({"error":"no data provided"})
 
+    if "text" not in data:
+        return jsonify({"error": "'text' missing from payload"})
+
     return jsonify(word_lem(text=data['text']))
 
 @app.route("/nlp/services/entity_ext", methods=["POST"])
 def entity_ext_service(data=None):
+
     if not data:
         data = request.json
         if not data:
             return jsonify({"error": "no data provided"})
+
+    if "text" not in data:
+        return jsonify({"error": "'text' missing from payload"})
 
     return jsonify(entity_ext(text=data['text']))
 
@@ -161,6 +171,9 @@ def text_sentiment_service(data=None):
         data = request.json
         if not data:
             return jsonify({"error": "no data provided"})
+
+    if "text" not in data:
+        return jsonify({"error": "'text' missing from payload"})
 
     return jsonify(text_sentiment(text=data['text']))
 
@@ -185,5 +198,7 @@ def translate_service(data=None):
 
     if "text" not in data:
         return jsonify({"error": "'text' missing from payload"})
+    elif "language_code" not in data:
+        return jsonify({"error":"'language_code' missing from payload"})
 
-    return jsonify(translate(text=data['text'], language=data['language code']))
+    return jsonify(translate(text=data['text'], language=data['language_code']))
